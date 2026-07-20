@@ -4,33 +4,44 @@ const { SETTINGS } = require('./Constants');
 
 class Logger {
 
-  constructor(homey) {
-    this.homey = homey;
-  }
-
-  isDebugEnabled() {
-    return this.homey.settings.get(SETTINGS.DEBUG) === true;
-  }
-
-  info(...args) {
-    this.homey.log('[INFO]', ...args);
-  }
-
-  warn(...args) {
-    this.homey.log('[WARN]', ...args);
-  }
-
-  error(...args) {
-    this.homey.error('[ERROR]', ...args);
-  }
-
-  debug(...args) {
-    if (!this.isDebugEnabled()) {
-      return;
+    constructor(app) {
+        this.app = app;
     }
 
-    this.homey.log('[DEBUG]', ...args);
-  }
+    isDebugEnabled() {
+        return this.app.homey.settings.get(SETTINGS.DEBUG) === true;
+    }
+
+    info(...args) {
+        this.app.log('[INFO]', ...args);
+    }
+
+    warn(...args) {
+        this.app.log('[WARN]', ...args);
+    }
+
+    error(...args) {
+        this.app.error('[ERROR]', ...args);
+    }
+
+    debug(...args) {
+        if (!this.isDebugEnabled()) {
+            return;
+        }
+
+        this.app.log('[DEBUG]', ...args);
+    }
+
+    debugObject(title, object) {
+        if (!this.isDebugEnabled()) {
+            return;
+        }
+
+        this.app.log(
+            '[DEBUG]',
+            `${title}\n${JSON.stringify(object, null, 2)}`
+        );
+    }
 
 }
 

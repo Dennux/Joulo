@@ -10,6 +10,8 @@ class JouloApp extends Homey.App {
 
   async onInit() {
 
+
+
     this.logger = new Logger(this);
 
     this.client = new Client(this);

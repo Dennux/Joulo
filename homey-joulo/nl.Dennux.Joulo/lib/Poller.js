@@ -1,6 +1,8 @@
 'use strict';
-
+const ChargerMapper = require('./models/ChargerMapper');
 class Poller {
+
+
 
     constructor(app) {
         this.app = app;
@@ -45,13 +47,27 @@ class Poller {
             const response = await this.client.chargers.get();
 
             if (!response || !Array.isArray(response.chargers)) {
-                throw new Error('invalid response from /chargers');
+                throw new Error('Invalid response from /chargers');
             }
+            // Debug: raw API response
+            this.logger.debugObject(
+                'Raw charger response',
+                response.chargers
+            );
 
-            this.cache.chargers = response.chargers;
+            this.cache.chargers = response.chargers.map(ChargerMapper.fromApi);
+
+            // Debug: internal model
+            this.logger.debugObject(
+                'Mapped charger model',
+                this.cache.chargers
+            );
+
             this.lastUpdate.chargers = new Date();
 
-            this.logger.info(`${response.chargers.length} charger(s) loaded`);
+            this.logger.info(
+                `${this.cache.chargers.length} charger(s) loaded`
+            );
 
         } catch (err) {
             this.logger.error('Error occurred while fetching chargers', err);
