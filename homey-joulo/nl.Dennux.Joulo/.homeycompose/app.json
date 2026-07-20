@@ -8,10 +8,12 @@
     "local"
   ],
   "name": {
-    "en": "Joulo"
+    "en": "Joulo",
+    "nl": "Joulo"
   },
   "description": {
-    "en": "Joulo intergration"
+    "en": "Joulo integration",
+    "nl": "Joulo integratie"
   },
   "category": [
     "tools"
@@ -25,28 +27,5 @@
   "author": {
     "name": "Dennux",
     "email": "dennis@dennux.nl"
-  },
-  "settings": [
-  {
-    "id": "api_token",
-    "type": "text",
-    "label": {
-      "en": "API Token",
-      "nl": "API Token"
-    },
-    "hint": {
-      "en": "Paste your Joulo Bearer Token",
-      "nl": "Plak hier je Joulo Bearer Token"
-    }
-  },
-  {
-    "id": "debug",
-    "type": "checkbox",
-    "label": {
-      "en": "Debug logging",
-      "nl": "Debug logging"
-    },
-    "value": false
   }
-]
 }

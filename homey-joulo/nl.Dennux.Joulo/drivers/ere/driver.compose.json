@@ -1,0 +1,13 @@
+{
+  "name": {
+    "en": "ERE",
+    "nl": "ERE"
+  },
+  "class": "sensor",
+  "capabilities": [],
+  "images": {
+    "small": "/drivers/ere/assets/images/small.png",
+    "large": "/drivers/ere/assets/images/large.png",
+    "xlarge": "/drivers/ere/assets/images/xlarge.png"
+  }
+}

@@ -9,10 +9,12 @@
     "local"
   ],
   "name": {
-    "en": "Joulo"
+    "en": "Joulo",
+    "nl": "Joulo"
   },
   "description": {
-    "en": "Joulo intergration"
+    "en": "Joulo integration",
+    "nl": "Joulo integratie"
   },
   "category": [
     "tools"
@@ -24,7 +26,23 @@
     "xlarge": "/assets/images/xlarge.png"
   },
   "author": {
-    "name": "Dennis Gouw",
+    "name": "Dennux",
     "email": "dennis@dennux.nl"
-  }
+  },
+  "drivers": [
+    {
+      "name": {
+        "en": "ERE",
+        "nl": "ERE"
+      },
+      "class": "sensor",
+      "capabilities": [],
+      "images": {
+        "small": "/drivers/ere/assets/images/small.png",
+        "large": "/drivers/ere/assets/images/large.png",
+        "xlarge": "/drivers/ere/assets/images/xlarge.png"
+      },
+      "id": "ere"
+    }
+  ]
 }

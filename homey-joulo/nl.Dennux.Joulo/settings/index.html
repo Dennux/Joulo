@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+
+  <title>Joulo</title>
+
+  <script src="/homey.js" data-origin="settings"></script>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <div class="container">
+
+    <h1>Joulo</h1>
+
+    <p class="subtitle">
+      Configureer de verbinding met de Joulo API.
+    </p>
+
+    <div class="card">
+
+      <label for="api_token">
+        API Token
+      </label>
+
+      <input
+        id="api_token"
+        type="password"
+        autocomplete="off"
+        placeholder="Voer hier je API token in">
+
+      <label class="checkbox">
+
+        <input
+          id="debug"
+          type="checkbox">
+
+        Debug logging inschakelen
+
+      </label>
+
+      <div class="status">
+
+        <span class="status-label">
+          Status
+        </span>
+
+        <span
+          id="status"
+          class="status-text status-neutral">
+
+          Niet getest
+
+        </span>
+
+      </div>
+
+      <div class="buttons">
+
+        <button
+          id="test"
+          class="secondary">
+
+          Test verbinding
+
+        </button>
+
+        <button
+          id="save">
+
+          Opslaan
+
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <script src="index.js"></script>
+
+</body>
+
+</html>

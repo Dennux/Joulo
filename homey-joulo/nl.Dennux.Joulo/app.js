@@ -18,11 +18,11 @@ class JouloApp extends Homey.App {
     this.logger.info('========================================');
 
     // Lees instellingen
-    //this.token = this.homey.settings.get('api_token');
+    this.token = this.homey.settings.get('api_token');
     this.debug = this.homey.settings.get('debug') || false;
 
-    this.token = 'DaBvuTQKxRtawGG2Ar76UYkA6H4JCtQv';
-this.debug = true;
+    //this.token = 'DaBvuTQKxRtawGG2Ar76UYkA6H4JCtQv';
+    //this.debug = true;
 
     if (!this.token) {
       this.logger.warn('No API token configured.');
