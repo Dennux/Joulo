@@ -13,7 +13,6 @@ function onHomeyReady(Homey) {
   function setStatus(text, css) {
 
     status.textContent = text;
-
     status.className = 'status-text ' + css;
 
   }
@@ -54,7 +53,10 @@ function onHomeyReady(Homey) {
           return Homey.alert(err.message || err);
         }
 
-        setStatus('Instellingen opgeslagen', 'status-success');
+        setStatus(
+          'Instellingen opgeslagen.',
+          'status-success'
+        );
 
       });
 
@@ -62,12 +64,33 @@ function onHomeyReady(Homey) {
 
   });
 
-  test.addEventListener('click', function() {
+  test.addEventListener('click', async function() {
 
     setStatus(
-      'Verbindingstest volgt in de volgende stap…',
+      'Verbinding testen...',
       'status-neutral'
     );
+
+    try {
+
+      await Homey.api(
+        'GET',
+        '/testConnection'
+      );
+
+      setStatus(
+        '✅ Verbinding geslaagd.',
+        'status-success'
+      );
+
+    } catch (error) {
+
+      setStatus(
+        `❌ ${error.message}`,
+        'status-error'
+      );
+
+    }
 
   });
 

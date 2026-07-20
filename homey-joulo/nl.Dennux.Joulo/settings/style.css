@@ -93,3 +93,13 @@ button {
 .secondary {
   background: #ececec;
 }
+.hint {
+  margin: 16px 0 20px;
+  padding: 10px 12px;
+  border-left: 4px solid #f5a623;
+  background: #fff8e5;
+  color: #555;
+  font-size: 13px;
+  line-height: 1.5;
+  border-radius: 4px;
+}

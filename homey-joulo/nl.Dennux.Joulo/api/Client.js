@@ -28,6 +28,13 @@ class Client {
 
   }
 
+  refreshToken() {
+
+  this.token = this.app.homey.settings.get(SETTINGS.TOKEN);
+
+}
+
+
   setToken(token) {
 
     this.token = token;
@@ -39,6 +46,20 @@ class Client {
     return Boolean(this.token);
 
   }
+
+  async testConnection() {
+
+  this.refreshToken();
+
+  if (!this.hasToken()) {
+    throw new Error('Geen API-token geconfigureerd.');
+  }
+
+  await this.energy.get();
+
+  return true;
+
+}
 
 }
 

@@ -20,6 +20,12 @@
     "tools"
   ],
   "permissions": [],
+  "api": {
+    "testConnection": {
+      "method": "GET",
+      "path": "/testConnection"
+    }
+  },
   "images": {
     "small": "/assets/images/small.png",
     "large": "/assets/images/large.png",

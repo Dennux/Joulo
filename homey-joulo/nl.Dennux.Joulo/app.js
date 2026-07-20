@@ -24,6 +24,12 @@ class JouloApp extends Homey.App {
 
   }
 
+  async testConnection() {
+
+    return this.client.testConnection();
+
+  }
+
 }
 
 module.exports = JouloApp;
