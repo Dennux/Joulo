@@ -1,0 +1,18 @@
+{
+  "name": {
+    "en": "Charger",
+    "nl": "Lader"
+  },
+  "class": "other",
+
+  "images": {
+    "large": "/drivers/chargers/assets/images/large.png",
+    "small": "/drivers/chargers/assets/images/small.png"
+  },
+
+  "capabilities": [],
+
+  "platforms": [
+    "local"
+  ]
+}

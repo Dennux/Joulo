@@ -4,6 +4,7 @@ const Homey = require('homey');
 
 const Logger = require('./lib/Logger');
 const Client = require('./api/Client');
+const Poller = require('./lib/Poller');
 
 class JouloApp extends Homey.App {
 
@@ -22,12 +23,23 @@ class JouloApp extends Homey.App {
       this.logger.warn('No API token configured.');
     }
 
+    this.poller = new Poller(this);
+
+    await this.poller.init();
+    await this.poller.start();
+
   }
 
   async testConnection() {
 
     return this.client.testConnection();
 
+  }
+
+  async onUninit() {
+    if (this.poller) {
+      this.poller.stop();
+    }
   }
 
 }
