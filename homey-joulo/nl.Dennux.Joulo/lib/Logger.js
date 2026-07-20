@@ -1,23 +1,35 @@
 'use strict';
 
-const Homey = require('homey');
+const { SETTINGS } = require('./Constants');
 
 class Logger {
 
-  constructor(app) {
-    this.app = app;
+  constructor(homey) {
+    this.homey = homey;
   }
 
-  info(message) {
-    this.app.log(`[INFO] ${message}`);
+  isDebugEnabled() {
+    return this.homey.settings.get(SETTINGS.DEBUG) === true;
   }
 
-  warn(message) {
-    this.app.log(`[WARN] ${message}`);
+  info(...args) {
+    this.homey.log('[INFO]', ...args);
   }
 
-  error(message) {
-    this.app.error(`[ERROR] ${message}`);
+  warn(...args) {
+    this.homey.log('[WARN]', ...args);
+  }
+
+  error(...args) {
+    this.homey.error('[ERROR]', ...args);
+  }
+
+  debug(...args) {
+    if (!this.isDebugEnabled()) {
+      return;
+    }
+
+    this.homey.log('[DEBUG]', ...args);
   }
 
 }
