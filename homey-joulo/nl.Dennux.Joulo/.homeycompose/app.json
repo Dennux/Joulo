@@ -23,7 +23,30 @@
     "xlarge": "/assets/images/xlarge.png"
   },
   "author": {
-    "name": "Dennis Gouw",
+    "name": "Dennux",
     "email": "dennis@dennux.nl"
+  },
+  "settings": [
+  {
+    "id": "api_token",
+    "type": "text",
+    "label": {
+      "en": "API Token",
+      "nl": "API Token"
+    },
+    "hint": {
+      "en": "Paste your Joulo Bearer Token",
+      "nl": "Plak hier je Joulo Bearer Token"
+    }
+  },
+  {
+    "id": "debug",
+    "type": "checkbox",
+    "label": {
+      "en": "Debug logging",
+      "nl": "Debug logging"
+    },
+    "value": false
   }
+]
 }
