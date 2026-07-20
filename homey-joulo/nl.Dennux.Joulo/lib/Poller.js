@@ -6,6 +6,7 @@ class Poller {
 
     constructor(app) {
         this.app = app;
+        this.homey = app.homey;
         this.client = app.client;
         this.logger = app.logger;
 
@@ -21,7 +22,6 @@ class Poller {
             ere: null,
         };
 
-        // Laatste succesvolle update per endpoint
         this.lastUpdate = {
             chargers: null,
             energy: null,
@@ -68,6 +68,8 @@ class Poller {
             this.logger.info(
                 `${this.cache.chargers.length} charger(s) loaded`
             );
+
+            await this.syncChargerDevices();
 
         } catch (err) {
             this.logger.error('Error occurred while fetching chargers', err);
@@ -127,6 +129,37 @@ class Poller {
             clearInterval(this.interval);
             this.interval = null;
             this.logger.info('Poller gestopt');
+        }
+    }
+
+    async syncChargerDevices() {
+
+        let driver;
+
+        try {
+            driver = this.homey.drivers.getDriver('chargers');
+        } catch (error) {
+            this.logger.debug('Chargers driver not initialized yet');
+            return;
+        }
+        const devices = driver.getDevices();
+
+        this.logger.debug(
+            `Synchronizing ${devices.length} charger device(s)`
+        );
+
+        for (const device of devices) {
+
+            const charger = this.getCharger(device.getData().id);
+
+            if (!charger) {
+                this.logger.warn(
+                    `No charger found for device ${device.getName()}`
+                );
+                continue;
+            }
+
+            await device.updateFromModel(charger);
         }
     }
 

@@ -10,7 +10,10 @@
     "small": "/drivers/chargers/assets/images/small.png"
   },
 
-  "capabilities": [],
+  "capabilities": [
+  "onoff",
+  "meter_power"
+],
 
   "platforms": [
     "local"
