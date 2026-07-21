@@ -3,6 +3,131 @@
 window.Joulo = window.Joulo || {};
 
 /**
+ * Gebruik mockdata tijdens het ontwerpen.
+ * Zet op false om weer de API-data te gebruiken.
+ */
+const USE_MOCK_DATA = true;
+
+/**
+ * Mock dataset.
+ */
+const MOCK_ENERGY = {
+
+    totals: {
+
+        kwh: 4120,
+        ereCredits: 503,
+        sessions: 74
+
+    },
+
+    selectedMonth: {
+        month: '2026-07-01'
+    },
+
+    months: [
+
+        {
+            month: '2026-01-01',
+            label: 'Januari',
+            kwh: 128,
+            ereCredits: 16,
+            sessions: 2
+        },
+
+        {
+            month: '2026-02-01',
+            label: 'Februari',
+            kwh: 182,
+            ereCredits: 22,
+            sessions: 3
+        },
+
+        {
+            month: '2026-03-01',
+            label: 'Maart',
+            kwh: 284,
+            ereCredits: 35,
+            sessions: 5
+        },
+
+        {
+            month: '2026-04-01',
+            label: 'April',
+            kwh: 396,
+            ereCredits: 48,
+            sessions: 7
+        },
+
+        {
+            month: '2026-05-01',
+            label: 'Mei',
+            kwh: 482,
+            ereCredits: 59,
+            sessions: 8
+        },
+
+        {
+            month: '2026-06-01',
+            label: 'Juni',
+            kwh: 556,
+            ereCredits: 68,
+            sessions: 9
+        },
+
+        {
+            month: '2026-07-01',
+            label: 'Juli',
+            kwh: 612,
+            ereCredits: 76,
+            sessions: 10
+        },
+
+        {
+            month: '2026-08-01',
+            label: 'Augustus',
+            kwh: 531,
+            ereCredits: 66,
+            sessions: 9
+        },
+
+        {
+            month: '2026-09-01',
+            label: 'September',
+            kwh: 421,
+            ereCredits: 52,
+            sessions: 7
+        },
+
+        {
+            month: '2026-10-01',
+            label: 'Oktober',
+            kwh: 308,
+            ereCredits: 38,
+            sessions: 6
+        },
+
+        {
+            month: '2026-11-01',
+            label: 'November',
+            kwh: 176,
+            ereCredits: 22,
+            sessions: 4
+        },
+
+        {
+            month: '2026-12-01',
+            label: 'December',
+            kwh: 132,
+            ereCredits: 17,
+            sessions: 2
+        }
+
+    ]
+
+};
+
+/**
  * Current widget state.
  */
 window.Joulo.state = {
@@ -18,6 +143,10 @@ window.Joulo.state = {
  * @param {Object} energy
  */
 window.Joulo.render = function (energy) {
+
+    if (USE_MOCK_DATA) {
+        energy = MOCK_ENERGY;
+    }
 
     if (!energy) {
         return;
@@ -55,7 +184,6 @@ window.Joulo.render = function (energy) {
     window.Joulo.updateNavigation();
 
 };
-
 /**
  * Updates the totals.
  *
@@ -91,7 +219,7 @@ window.Joulo.renderSelectedMonth = function () {
 
     const month =
         window.Joulo.state.months[
-            window.Joulo.state.selectedIndex
+        window.Joulo.state.selectedIndex
         ];
 
     if (!month) {

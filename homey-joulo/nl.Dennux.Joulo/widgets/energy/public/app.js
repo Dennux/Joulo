@@ -175,11 +175,11 @@ function onHomeyReady(Homey) {
 
     document
         .getElementById('previous-month')
-        .addEventListener('click', previousMonth);
+        .addEventListener('click', window.Joulo.previous);
 
     document
         .getElementById('next-month')
-        .addEventListener('click', nextMonth);
+        .addEventListener('click', window.Joulo.next);
 
     load(Homey);
 

@@ -47,12 +47,10 @@ window.Joulo.formatCredits = function (value) {
     const number = Number(value);
 
     if (!Number.isFinite(number)) {
-        return '€ 0,00';
+        return '0,00';
     }
 
     return number.toLocaleString('nl-NL', {
-        style: 'currency',
-        currency: 'EUR',
         minimumFractionDigits: 2,
         maximumFractionDigits: 2
     });

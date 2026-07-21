@@ -17,8 +17,6 @@ window.Joulo.createChart = function (canvas) {
 
     window.Joulo.chart = new Chart(canvas, {
 
-        type: 'bar',
-
         data: {
 
             labels: [],
@@ -26,23 +24,49 @@ window.Joulo.createChart = function (canvas) {
             datasets: [
 
                 {
+                    type: 'bar',
+
                     label: 'kWh',
+
                     data: [],
+
                     yAxisID: 'kwh',
+
                     backgroundColor: [],
+
                     borderRadius: 8,
                     borderSkipped: false,
-                    maxBarThickness: 18
+                    maxBarThickness: 28,
+
+                    order: 10
                 },
 
                 {
+                    type: 'line',
+
                     label: 'ERE Credits',
+
                     data: [],
+
                     yAxisID: 'credits',
-                    backgroundColor: [],
-                    borderRadius: 8,
-                    borderSkipped: false,
-                    maxBarThickness: 18
+
+                    borderColor: '#22C55E',
+                    backgroundColor: '#22C55E',
+
+                    borderWidth: 3,
+
+                    pointRadius: [],
+                    pointHoverRadius: 8,
+
+                    pointBackgroundColor: [],
+                    pointBorderColor: '#FFFFFF',
+                    pointBorderWidth: 2,
+
+                    tension: 0.35,
+
+                    fill: false,
+
+                    order: 1
                 }
 
             ]
@@ -94,7 +118,7 @@ window.Joulo.createChart = function (canvas) {
 
                             }
 
-                            return `Credits: ${window.Joulo.formatCredits(
+                            return `ERE Credits: ${window.Joulo.formatCredits(
                                 context.raw
                             )}`;
 
@@ -104,7 +128,7 @@ window.Joulo.createChart = function (canvas) {
 
                             const month =
                                 window.Joulo.chart.$months[
-                                    items[0].dataIndex
+                                items[0].dataIndex
                                 ];
 
                             return `Sessies: ${window.Joulo.formatInteger(
@@ -201,14 +225,24 @@ window.Joulo.updateChart = function (months, selectedIndex) {
         month.label.substring(0, 3)
     );
 
+    // Energie (bars)
     window.Joulo.chart.data.datasets[0].data = months.map(month =>
         month.kwh
     );
 
+    // ERE Credits (line)
     window.Joulo.chart.data.datasets[1].data = months.map(month =>
         month.ereCredits
     );
 
+    const maxCredits = Math.max(
+        ...months.map(month => month.ereCredits)
+    );
+
+    window.Joulo.chart.options.scales.credits.max =
+        Math.ceil(maxCredits / 0.4);
+
+    // Bar colours
     window.Joulo.chart.data.datasets[0].backgroundColor =
         months.map((month, index) =>
 
@@ -218,12 +252,20 @@ window.Joulo.updateChart = function (months, selectedIndex) {
 
         );
 
-    window.Joulo.chart.data.datasets[1].backgroundColor =
+    // Highlight selected point
+    window.Joulo.chart.data.datasets[1].pointRadius =
+        months.map((month, index) =>
+
+            index === selectedIndex ? 7 : 4
+
+        );
+
+    window.Joulo.chart.data.datasets[1].pointBackgroundColor =
         months.map((month, index) =>
 
             index === selectedIndex
                 ? '#22C55E'
-                : 'rgba(34,197,94,.28)'
+                : '#16A34A'
 
         );
 
