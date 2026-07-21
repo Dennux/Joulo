@@ -45,18 +45,19 @@ class SessionPoller extends BasePoller {
                 response.sessions
             );
 
-            this.cache.sessions =
-                response.sessions.map(SessionMapper.fromApi);
+            this.cache.setSessions(
+                response.sessions.map(SessionMapper.fromApi)
+            );
+
+            const sessions = this.cache.getSessions();
 
             this.logger.debugObject(
                 'Mapped session model',
-                this.cache.sessions
+                sessions
             );
 
-            this.lastUpdate.sessions = new Date();
-
             this.logger.info(
-                `${this.cache.sessions.length} session(s) loaded`
+                `${sessions.length} session(s) loaded`
             );
 
             // Later:

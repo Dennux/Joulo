@@ -4,9 +4,9 @@ const BaseApi = require('./BaseApi');
 
 class Ere extends BaseApi {
 
-  async get() {
-    return this.getRequest('/ere');
-  }
+    async get() {
+        return this.getRequest('/ere-position');
+    }
 
 }
 

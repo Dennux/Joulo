@@ -23,18 +23,20 @@ class ChargerPoller extends BasePoller {
                 response.chargers
             );
 
-            this.cache.chargers =
-                response.chargers.map(ChargerMapper.fromApi);
+            this.cache.setChargers(response.chargers.map(ChargerMapper.fromApi));
+
+
+            const chargers = this.cache.getChargers();
 
             this.logger.debugObject(
                 'Mapped charger model',
-                this.cache.chargers
+                chargers
             );
 
-            this.lastUpdate.chargers = new Date();
+
 
             this.logger.info(
-                `${this.cache.chargers.length} charger(s) loaded`
+                `${chargers.length} charger(s) loaded`
             );
 
             await this.syncDevices();
@@ -78,9 +80,7 @@ class ChargerPoller extends BasePoller {
 
         for (const device of devices) {
 
-            const charger = this.cache.chargers.find(
-                charger => charger.id === device.getData().id
-            );
+           const charger = this.cache.getCharger(device.getData().id);
 
             if (!charger) {
 

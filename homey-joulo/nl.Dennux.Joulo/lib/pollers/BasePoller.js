@@ -14,11 +14,11 @@ class BasePoller {
     }
 
     get cache() {
-        return this.parent.cache;
+        return this.app.cache;
     }
 
     get lastUpdate() {
-        return this.parent.lastUpdate;
+        return this.app.cache.lastUpdate;
     }
 
 }

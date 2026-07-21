@@ -12,7 +12,7 @@ class ChargersDriver extends Homey.Driver {
 
     this.homey.app.logger.info('onPairListDevices called');
 
-    const chargers = this.homey.app.poller.getChargers();
+    const chargers = this.homey.app.cache.getChargers();
 
     this.homey.app.logger.info(
       `Found ${chargers.length} charger(s)`

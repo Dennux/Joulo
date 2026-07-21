@@ -2,6 +2,10 @@
 
 const SessionPoller = require('./pollers/SessionPoller');
 const ChargerPoller  = require('./pollers/ChargerPoller');
+const EnergyPoller  = require('./pollers/EnergyPoller');
+const ErePoller  = require('./pollers/ErePoller');
+
+const { POLLER } = require('./Constants');
 
 class Poller {
 
@@ -15,26 +19,13 @@ class Poller {
 
         // Polling
         this.interval = null;
-        this.intervalMs = 30000;
-
-        // Centrale cache
-        this.cache = {
-            chargers: [],
-            energy: null,
-            sessions: [],
-            ere: null,
-        };
-
-        this.lastUpdate = {
-            chargers: null,
-            energy: null,
-            sessions: null,
-            ere: null,
-        };
+        this.intervalMs = POLLER.FAST_INTERVAL;
 
         this.sessionPoller = new SessionPoller(this);
         this.chargerPoller = new ChargerPoller(this);
-    }
+        this.energyPoller = new EnergyPoller(this);
+        this.erePoller = new ErePoller(this);
+    } 
 
     /**
      * Initialiseer de poller.
@@ -47,39 +38,12 @@ class Poller {
 
         await this.chargerPoller.update();
         await this.sessionPoller.update();
+        await this.energyPoller.update();
+        await this.erePoller.update();  
 
     }
 
-  
 
-    /**
-     * Geef alle chargers terug.
-     * Retourneert een kopie zodat de cache niet aangepast kan worden.
-     */
-    getChargers() {
-        return [...this.cache.chargers];
-    }
-
-    /**
-     * Geef één charger terug op basis van het id.
-     */
-    getCharger(id) {
-        return this.cache.chargers.find(charger => charger.id === id) ?? null;
-    }
-
-    /**
-     * Geef het tijdstip van de laatste succesvolle update terug.
-     */
-    getLastUpdate(type) {
-        return this.lastUpdate[type] ?? null;
-    }
-
-    /**
-     * Controleer of er charger-data beschikbaar is.
-     */
-    hasChargers() {
-        return this.cache.chargers.length > 0;
-    }
 
     async start() {
         this.logger.info(

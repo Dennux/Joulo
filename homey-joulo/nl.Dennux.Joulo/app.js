@@ -5,6 +5,7 @@ const Homey = require('homey');
 const Logger = require('./lib/Logger');
 const Client = require('./api/Client');
 const Poller = require('./lib/Poller');
+const Cache = require('./lib/Cache');
 
 class JouloApp extends Homey.App {
 
@@ -13,7 +14,7 @@ class JouloApp extends Homey.App {
 
 
     this.logger = new Logger(this);
-
+    this.cache = new Cache();
     this.client = new Client(this);
     await this.client.initialize();
 
