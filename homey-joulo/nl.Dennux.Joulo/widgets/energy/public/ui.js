@@ -226,8 +226,13 @@ window.Joulo.renderSelectedMonth = function () {
         return;
     }
 
-    document.getElementById('selected-month').textContent =
-        month.label;
+    const date = new Date(month.month);
+
+document.getElementById('selected-month').textContent =
+    date.toLocaleDateString(undefined, {
+        month: 'long',
+        year: 'numeric'
+    });
 
     document.getElementById('month-kwh').textContent =
         window.Joulo.formatKwh(

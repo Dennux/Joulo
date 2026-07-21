@@ -221,8 +221,12 @@ window.Joulo.updateChart = function (months, selectedIndex) {
 
     window.Joulo.chart.$months = months;
 
+    const monthFormatter = new Intl.DateTimeFormat(undefined, {
+        month: 'short'
+    });
+
     window.Joulo.chart.data.labels = months.map(month =>
-        month.label.substring(0, 3)
+        monthFormatter.format(new Date(month.month))
     );
 
     // Energie (bars)
