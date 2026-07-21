@@ -1,0 +1,38 @@
+body {
+
+    margin: 0;
+    padding: 16px;
+
+    font-family: var(--homey-font-family);
+
+}
+
+.title {
+
+    text-align: center;
+
+    font-size: 18px;
+    font-weight: 600;
+
+    margin-bottom: 20px;
+
+}
+
+.value {
+
+    text-align: center;
+
+    font-size: 34px;
+    font-weight: bold;
+
+}
+
+.info {
+
+    margin-top: 10px;
+
+    text-align: center;
+
+    font-size: 16px;
+
+}

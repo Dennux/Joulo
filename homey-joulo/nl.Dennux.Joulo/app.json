@@ -101,6 +101,23 @@
       "id": "sessions"
     }
   ],
+  "widgets": {
+    "energy": {
+      "name": {
+        "en": "Energy",
+        "nl": "Opbrengst"
+      },
+      "height": 188,
+      "settings": [],
+      "api": {
+        "getTotals": {
+          "method": "GET",
+          "path": "/totals"
+        }
+      },
+      "id": "energy"
+    }
+  },
   "capabilities": {
     "charger_charging": {
       "type": "boolean",

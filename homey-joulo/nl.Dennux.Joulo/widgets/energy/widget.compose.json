@@ -1,0 +1,14 @@
+{
+  "name": {
+    "en": "Energy",
+    "nl": "Opbrengst"
+  },
+  "height": 188,
+  "settings": [],
+  "api": {
+    "getTotals": {
+      "method": "GET",
+      "path": "/totals"
+    }
+  }
+}

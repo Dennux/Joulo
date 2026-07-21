@@ -45,6 +45,18 @@ class JouloApp extends Homey.App {
     }
   }
 
+  /**
+ * Returns the cached energy data.
+ * Used by the Energy widget.
+ *
+ * @returns {Object|null}
+ */
+  getEnergy() {
+
+    return this.cache.getEnergy();
+
+  }
+
 }
 
 module.exports = JouloApp;
