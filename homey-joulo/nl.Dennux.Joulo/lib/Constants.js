@@ -5,6 +5,7 @@ module.exports = {
   SETTINGS: {
     TOKEN: 'api_token',
     DEBUG: 'debug',
+    SESSION_LIMIT: 'session_limit',
   },
 
   API: {
@@ -16,6 +17,11 @@ module.exports = {
     FAST_INTERVAL: 30000,
     NORMAL_INTERVAL: 60000,
     SLOW_INTERVAL: 86400000,
+  },
+  SESSION_LIMIT: {
+    DEFAULT: 25,
+    MIN: 5,
+    MAX: 50,
   },
 
 };

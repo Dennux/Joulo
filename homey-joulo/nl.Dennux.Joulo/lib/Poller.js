@@ -1,5 +1,8 @@
 'use strict';
-const ChargerMapper = require('./models/ChargerMapper');
+
+const SessionPoller = require('./pollers/SessionPoller');
+const ChargerPoller  = require('./pollers/ChargerPoller');
+
 class Poller {
 
 
@@ -28,6 +31,9 @@ class Poller {
             sessions: null,
             ere: null,
         };
+
+        this.sessionPoller = new SessionPoller(this);
+        this.chargerPoller = new ChargerPoller(this);
     }
 
     /**
@@ -37,45 +43,14 @@ class Poller {
         this.logger.info('Poller Initialized');
     }
 
-    /**
-     * Haal alle chargers op en werk de cache bij.
-     */
-    async updateChargers() {
-        try {
-            this.logger.info('Updating chargers...');
+    async poll() {
 
-            const response = await this.client.chargers.get();
+        await this.chargerPoller.update();
+        await this.sessionPoller.update();
 
-            if (!response || !Array.isArray(response.chargers)) {
-                throw new Error('Invalid response from /chargers');
-            }
-            // Debug: raw API response
-            this.logger.debugObject(
-                'Raw charger response',
-                response.chargers
-            );
-
-            this.cache.chargers = response.chargers.map(ChargerMapper.fromApi);
-
-            // Debug: internal model
-            this.logger.debugObject(
-                'Mapped charger model',
-                this.cache.chargers
-            );
-
-            this.lastUpdate.chargers = new Date();
-
-            this.logger.info(
-                `${this.cache.chargers.length} charger(s) loaded`
-            );
-
-            await this.syncChargerDevices();
-
-        } catch (err) {
-            this.logger.error('Error occurred while fetching chargers', err);
-            throw err;
-        }
     }
+
+  
 
     /**
      * Geef alle chargers terug.
@@ -112,16 +87,16 @@ class Poller {
         );
 
         // Direct een eerste update
-        await this.updateChargers();
+        await this.poll();
 
         // Daarna elke 30 seconden
         this.interval = setInterval(async () => {
             try {
-                await this.updateChargers();
+                await this.poll();
             } catch (err) {
                 this.logger.error('Poller update failed', err);
             }
-        }, 30000);
+        }, this.intervalMs);
     }
 
     stop() {
@@ -132,36 +107,8 @@ class Poller {
         }
     }
 
-    async syncChargerDevices() {
+  
 
-        let driver;
-
-        try {
-            driver = this.homey.drivers.getDriver('chargers');
-        } catch (error) {
-            this.logger.debug('Chargers driver not initialized yet');
-            return;
-        }
-        const devices = driver.getDevices();
-
-        this.logger.debug(
-            `Synchronizing ${devices.length} charger device(s)`
-        );
-
-        for (const device of devices) {
-
-            const charger = this.getCharger(device.getData().id);
-
-            if (!charger) {
-                this.logger.warn(
-                    `No charger found for device ${device.getName()}`
-                );
-                continue;
-            }
-
-            await device.updateFromModel(charger);
-        }
-    }
 
 }
 

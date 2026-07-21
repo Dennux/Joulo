@@ -30,9 +30,9 @@ class Client {
 
   refreshToken() {
 
-  this.token = this.app.homey.settings.get(SETTINGS.TOKEN);
+    this.token = this.app.homey.settings.get(SETTINGS.TOKEN);
 
-}
+  }
 
 
   setToken(token) {
@@ -49,17 +49,19 @@ class Client {
 
   async testConnection() {
 
-  this.refreshToken();
+    this.refreshToken();
 
-  if (!this.hasToken()) {
-    throw new Error('Geen API-token geconfigureerd.');
+    if (!this.hasToken()) {
+      throw new Error('Geen API-token geconfigureerd.');
+    }
+
+    await this.energy.get();
+
+    return true;
+
   }
 
-  await this.energy.get();
 
-  return true;
-
-}
 
 }
 

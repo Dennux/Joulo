@@ -27,21 +27,21 @@
         API Token
       </label>
 
-      <input
-        id="api_token"
-        type="password"
-        autocomplete="off"
-        placeholder="Voer hier je API token in">
+      <input id="api_token" type="password" autocomplete="off" placeholder="Voer hier je API token in">
 
       <label class="checkbox">
 
-        <input
-          id="debug"
-          type="checkbox">
+        <input id="debug" type="checkbox">
 
         Debug logging inschakelen
 
       </label>
+
+      <label for="session_limit">
+        Maximum aantal recente  sessies
+      </label>
+
+      <input id="session_limit" type="number" min="5" max="50" step="5" placeholder="25">
 
       <div class="status">
 
@@ -49,9 +49,7 @@
           Status
         </span>
 
-        <span
-          id="status"
-          class="status-text status-neutral">
+        <span id="status" class="status-text status-neutral">
 
           Niet getest
 
@@ -67,16 +65,13 @@
 
       <div class="buttons">
 
-        <button
-          id="test"
-          class="secondary">
+        <button id="test" class="secondary">
 
           Test verbinding
 
         </button>
 
-        <button
-          id="save">
+        <button id="save">
 
           Opslaan
 

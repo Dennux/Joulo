@@ -4,6 +4,7 @@ function onHomeyReady(Homey) {
 
   const token = document.getElementById('api_token');
   const debug = document.getElementById('debug');
+  const sessionLimit = document.getElementById('session_limit');
 
   const save = document.getElementById('save');
   const test = document.getElementById('test');
@@ -39,7 +40,27 @@ function onHomeyReady(Homey) {
 
   });
 
+  Homey.get('session_limit', function(err, value) {
+
+    if (err) {
+      return Homey.alert(err.message || err);
+    }
+
+    sessionLimit.value = value || 25;
+
+  });
+
   save.addEventListener('click', function() {
+
+    let limit = Number(sessionLimit.value);
+
+    if (isNaN(limit)) {
+      limit = 25;
+    }
+
+    limit = Math.min(50, Math.max(5, limit));
+
+    sessionLimit.value = limit;
 
     Homey.set('api_token', token.value, function(err) {
 
@@ -53,10 +74,18 @@ function onHomeyReady(Homey) {
           return Homey.alert(err.message || err);
         }
 
-        setStatus(
-          'Instellingen opgeslagen.',
-          'status-success'
-        );
+        Homey.set('session_limit', limit, function(err) {
+
+          if (err) {
+            return Homey.alert(err.message || err);
+          }
+
+          setStatus(
+            'Instellingen opgeslagen.',
+            'status-success'
+          );
+
+        });
 
       });
 
