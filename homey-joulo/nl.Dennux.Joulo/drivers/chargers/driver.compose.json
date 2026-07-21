@@ -10,11 +10,11 @@
     "small": "/drivers/chargers/assets/images/small.png"
   },
 
-  "capabilities": [
-  "onoff",
+ "capabilities": [
   "meter_power",
   "charger_status",
-  "charger_connection_type",
+  "charger_charging",
+  "charger_integration",
   "charger_mid_certified",
   "charger_mid_eligible"
 ],
