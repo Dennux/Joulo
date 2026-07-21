@@ -7,40 +7,43 @@ module.exports = {
    *
    * @param {Object} options
    * @param {Homey} options.homey
-   * @returns {Object}
+   * @returns {Promise<Object>}
    */
   async getTotals({ homey }) {
 
     const energy = homey.app.getEnergy();
-
-    if (!energy) {
-
-      return {
-        success: false,
-        energy: {
-          totals: {
-            ereCredits: 0,
-            kwh: 0
-          },
-          months: []
-        },
-        updated: null
-      };
-
-    }
 
     const formatter = new Intl.DateTimeFormat('nl-NL', {
       month: 'long',
       year: 'numeric'
     });
 
+    // No data available yet
+    if (!energy) {
+      return {
+        success: false,
+
+        energy: {
+          totals: {
+            kwh: 0,
+            ereCredits: 0,
+            sessions: 0
+          },
+          months: [],
+          selectedMonth: null
+        },
+
+        updated: null
+      };
+    }
+
     const months = energy.months.map(month => ({
 
       month: month.month,
 
-      label:
-        formatter.format(new Date(month.month))
-          .replace(/^./, c => c.toUpperCase()),
+      label: formatter
+        .format(new Date(month.month))
+        .replace(/^./, c => c.toUpperCase()),
 
       kwh: month.kwh,
       kwhAll: month.kwhAll,
@@ -61,12 +64,16 @@ module.exports = {
         totals: {
 
           kwh: energy.totalKwhAll,
-
-          ereCredits: energy.totalEreCredits
+          ereCredits: energy.totalEreCredits,
+          sessions: energy.totalSessionsAll
 
         },
 
-        months
+        months,
+
+        selectedMonth: months.length
+          ? months[months.length - 1]
+          : null
 
       },
 

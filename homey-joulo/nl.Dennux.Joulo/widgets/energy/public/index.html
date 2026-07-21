@@ -1,31 +1,125 @@
 <!DOCTYPE html>
-<html>
+<html lang="nl">
 
 <head>
 
     <meta charset="utf-8">
 
-    <link rel="stylesheet" href="style.css">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <link
+        rel="stylesheet"
+        href="style.css">
 
 </head>
 
 <body class="homey-widget">
 
-    <div class="title">
-        Opbrengst
-    </div>
+    <main class="widget">
 
-    <div id="credits" class="value">
-        --
-    </div>
+        <!-- Summary ------------------------------------------------------>
 
-    <div id="kwh" class="info">
-        --
-    </div>
+        <section class="summary">
 
-    <div id="sessions" class="info">
-        --
-    </div>
+            <div class="summary-item">
+
+                <div class="summary-label">
+                    ⚡ Energie
+                </div>
+
+                <div
+                    id="total-kwh"
+                    class="summary-value">
+
+                    --
+
+                </div>
+
+            </div>
+
+            <div class="summary-item">
+
+                <div class="summary-label">
+                    🪙 Credits
+                </div>
+
+                <div
+                    id="total-credits"
+                    class="summary-value">
+
+                    --
+
+                </div>
+
+            </div>
+
+            <div class="summary-item">
+
+                <div class="summary-label">
+                    🚗 Sessies
+                </div>
+
+                <div
+                    id="total-sessions"
+                    class="summary-value">
+
+                    --
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- Chart -------------------------------------------------------->
+
+        <section class="chart">
+
+            <div
+                id="chart-placeholder"
+                class="chart-placeholder">
+
+                Grafiek wordt geladen…
+
+            </div>
+
+        </section>
+
+        <!-- Selected month ---------------------------------------------->
+
+        <section class="month">
+
+            <button
+                id="previous-month"
+                class="month-button"
+                aria-label="Vorige maand">
+
+                ◀
+
+            </button>
+
+            <div
+                id="selected-month"
+                class="month-title">
+
+                --
+
+            </div>
+
+            <button
+                id="next-month"
+                class="month-button"
+                aria-label="Volgende maand">
+
+                ▶
+
+            </button>
+
+        </section>
+
+    </main>
 
     <script src="app.js"></script>
 
