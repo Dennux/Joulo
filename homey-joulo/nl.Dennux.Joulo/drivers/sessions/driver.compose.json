@@ -1,0 +1,13 @@
+{
+  "name": {
+    "en": "Charging Session",
+    "nl": "Laadsessie"
+  },
+  "class": "sensor",
+  "capabilities": [],
+  "images": {
+    "small": "/drivers/sessions/assets/images/small.png",
+    "large": "/drivers/sessions/assets/images/large.png",
+    "xlarge": "/drivers/sessions/assets/images/xlarge.png"
+  }
+}
