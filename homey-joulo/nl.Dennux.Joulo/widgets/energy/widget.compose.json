@@ -3,7 +3,7 @@
     "en": "Energy",
     "nl": "Opbrengst"
   },
-  "height": 188,
+  "height": 600,
   "settings": [],
   "api": {
     "getTotals": {

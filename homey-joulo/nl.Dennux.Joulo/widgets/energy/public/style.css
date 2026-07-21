@@ -1,18 +1,18 @@
 :root {
 
-    --spacing-xs: 4px;
-    --spacing-sm: 8px;
-    --spacing-md: 12px;
-    --spacing-lg: 16px;
+    --card-bg: rgba(255,255,255,.06);
+    --card-border: rgba(255,255,255,.10);
 
-    --radius: 12px;
+    --text: #ffffff;
+    --muted: rgba(255,255,255,.65);
+
+    --blue: #3B82F6;
+    --green: #22C55E;
 
 }
 
 * {
-
     box-sizing: border-box;
-
 }
 
 html,
@@ -24,17 +24,21 @@ body {
     width: 100%;
     height: 100%;
 
-    overflow: hidden;
+    font-family:
+        Inter,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
 
-    font-family: var(--homey-font-family);
+    color: var(--text);
 
 }
 
 body {
 
-    padding: var(--spacing-lg);
-
-    background: transparent;
+    padding: 12px;
 
 }
 
@@ -42,177 +46,229 @@ body {
 
     display: flex;
     flex-direction: column;
+    gap: 14px;
 
     width: 100%;
     height: 100%;
 
-    gap: var(--spacing-md);
-
 }
 
-/* ---------------------------------------------------------- */
-/* Summary                                                     */
-/* ---------------------------------------------------------- */
+/* ---------------------------------------------------
+   TOTALS
+----------------------------------------------------*/
 
-.summary {
+.totals {
 
     display: grid;
-
     grid-template-columns: repeat(3, 1fr);
 
-    gap: var(--spacing-md);
+    gap: 10px;
 
 }
 
-.summary-item {
+.total-card {
 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    background: var(--card-bg);
 
-    min-height: 56px;
+    border: 1px solid var(--card-border);
 
-}
+    border-radius: 14px;
 
-.summary-label {
+    padding: 12px;
 
-    font-size: 11px;
-
-    opacity: .65;
-
-    font-weight: 500;
-
-    margin-bottom: var(--spacing-xs);
+    text-align: center;
 
 }
 
-.summary-value {
+.total-title {
 
-    font-size: 20px;
+    font-size: 12px;
+
+    color: var(--muted);
+
+    margin-bottom: 8px;
+
+}
+
+.total-value {
+
+    font-size: 22px;
 
     font-weight: 700;
 
-    line-height: 1.1;
-
-    white-space: nowrap;
-
-    overflow: hidden;
-
-    text-overflow: ellipsis;
+    line-height: 1.2;
 
 }
 
-/* ---------------------------------------------------------- */
-/* Chart                                                       */
-/* ---------------------------------------------------------- */
+.total-unit {
 
-.chart {
+    margin-top: 4px;
 
-    flex: 1;
+    font-size: 11px;
 
-    min-height: 0;
-
-    border-radius: var(--radius);
-
-    border: 1px solid rgba(255,255,255,.08);
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    overflow: hidden;
+    color: var(--muted);
 
 }
 
-.chart-placeholder {
+/* ---------------------------------------------------
+   CHART
+----------------------------------------------------*/
 
-    font-size: 13px;
+.chart-section {
 
-    opacity: .45;
+    position: relative;
 
-    text-align: center;
+    height: 240px;
+
+    border-radius: 14px;
+
+    background: var(--card-bg);
+
+    border: 1px solid var(--card-border);
+
+    padding: 10px;
 
 }
 
-/* ---------------------------------------------------------- */
-/* Month selector                                              */
-/* ---------------------------------------------------------- */
+.chart-section canvas {
 
-.month {
+    width: 100% !important;
+    height: 100% !important;
+
+}
+
+/* ---------------------------------------------------
+   MONTH SELECTOR
+----------------------------------------------------*/
+
+.month-selector {
 
     display: grid;
 
-    grid-template-columns: 36px 1fr 36px;
+    grid-template-columns: 44px 1fr 44px;
 
     align-items: center;
 
-    gap: var(--spacing-sm);
+    gap: 8px;
 
 }
 
-.month-title {
-
-    text-align: center;
-
-    font-size: 14px;
-
-    font-weight: 600;
-
-    overflow: hidden;
-
-    white-space: nowrap;
-
-    text-overflow: ellipsis;
-
-}
-
-.month-button {
-
-    width: 32px;
-    height: 32px;
+.nav-button {
 
     border: none;
 
-    border-radius: 50%;
+    background: var(--card-bg);
 
-    background: transparent;
+    color: white;
 
-    color: inherit;
+    height: 40px;
 
-    font-size: 16px;
+    border-radius: 10px;
 
     cursor: pointer;
 
-    transition: background .15s ease;
+    font-size: 18px;
+
+    transition: .15s;
 
 }
 
-.month-button:hover {
+.nav-button:hover {
 
-    background: rgba(255,255,255,.08);
-
-}
-
-.month-button:active {
-
-    transform: scale(.95);
+    background: rgba(255,255,255,.15);
 
 }
 
-/* ---------------------------------------------------------- */
-/* Loading / Empty state                                       */
-/* ---------------------------------------------------------- */
+.nav-button:active {
 
-.loading {
-
-    opacity: .6;
+    transform: scale(.96);
 
 }
 
-.hidden {
+.selected-month {
 
-    display: none !important;
+    text-align: center;
+
+    font-size: 18px;
+
+    font-weight: 600;
+
+}
+
+/* ---------------------------------------------------
+   MONTH DETAILS
+----------------------------------------------------*/
+
+.month-details {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+
+}
+
+.detail-row {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding: 12px 14px;
+
+    border-radius: 12px;
+
+    background: var(--card-bg);
+
+    border: 1px solid var(--card-border);
+
+}
+
+.detail-label {
+
+    color: var(--muted);
+
+    font-size: 14px;
+
+    font-weight: 500;
+
+}
+
+#month-kwh,
+#month-credits,
+#month-sessions {
+
+    font-size: 16px;
+
+    font-weight: 700;
+
+}
+
+/* ---------------------------------------------------
+   MOBILE
+----------------------------------------------------*/
+
+@media (max-width:420px) {
+
+    .total-value {
+
+        font-size: 18px;
+
+    }
+
+    .selected-month {
+
+        font-size: 16px;
+
+    }
+
+    .chart-section {
+
+        height: 200px;
+
+    }
 
 }

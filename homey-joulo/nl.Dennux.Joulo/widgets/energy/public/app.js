@@ -88,9 +88,9 @@ function renderChartPlaceholder() {
  */
 function render() {
 
-    renderTotals();
-    renderMonth();
-    renderChartPlaceholder();
+    window.Joulo.render(
+        energyData.energy
+    );
 
 }
 
@@ -168,6 +168,10 @@ async function load(Homey) {
 function onHomeyReady(Homey) {
 
     Homey.ready();
+
+    window.Joulo.createChart(
+        document.getElementById('energy-chart')
+    );
 
     document
         .getElementById('previous-month')

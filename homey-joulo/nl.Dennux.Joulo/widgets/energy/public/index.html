@@ -4,124 +4,182 @@
 <head>
 
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0">
+    <title>Joulo Energy</title>
 
-    <link
-        rel="stylesheet"
-        href="style.css">
+    <link rel="stylesheet" href="style.css">
 
 </head>
 
-<body class="homey-widget">
+<body>
 
-    <main class="widget">
+<div class="widget">
 
-        <!-- Summary ------------------------------------------------------>
+    <!-- Totals ---------------------------------------------------------->
 
-        <section class="summary">
+    <section class="totals">
 
-            <div class="summary-item">
+        <div class="total-card">
 
-                <div class="summary-label">
-                    ⚡ Energie
-                </div>
-
-                <div
-                    id="total-kwh"
-                    class="summary-value">
-
-                    --
-
-                </div>
-
+            <div class="total-title">
+                Energie
             </div>
-
-            <div class="summary-item">
-
-                <div class="summary-label">
-                    🪙 Credits
-                </div>
-
-                <div
-                    id="total-credits"
-                    class="summary-value">
-
-                    --
-
-                </div>
-
-            </div>
-
-            <div class="summary-item">
-
-                <div class="summary-label">
-                    🚗 Sessies
-                </div>
-
-                <div
-                    id="total-sessions"
-                    class="summary-value">
-
-                    --
-
-                </div>
-
-            </div>
-
-        </section>
-
-        <!-- Chart -------------------------------------------------------->
-
-        <section class="chart">
 
             <div
-                id="chart-placeholder"
-                class="chart-placeholder">
-
-                Grafiek wordt geladen…
-
-            </div>
-
-        </section>
-
-        <!-- Selected month ---------------------------------------------->
-
-        <section class="month">
-
-            <button
-                id="previous-month"
-                class="month-button"
-                aria-label="Vorige maand">
-
-                ◀
-
-            </button>
-
-            <div
-                id="selected-month"
-                class="month-title">
+                id="total-kwh"
+                class="total-value">
 
                 --
 
             </div>
 
-            <button
-                id="next-month"
-                class="month-button"
-                aria-label="Volgende maand">
+            <div class="total-unit">
+                kWh
+            </div>
 
-                ▶
+        </div>
 
-            </button>
+        <div class="total-card">
 
-        </section>
+            <div class="total-title">
+                Credits
+            </div>
 
-    </main>
+            <div
+                id="total-credits"
+                class="total-value">
 
-    <script src="app.js"></script>
+                --
+
+            </div>
+
+            <div class="total-unit">
+                €
+            </div>
+
+        </div>
+
+        <div class="total-card">
+
+            <div class="total-title">
+                Sessies
+            </div>
+
+            <div
+                id="total-sessions"
+                class="total-value">
+
+                --
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Chart ----------------------------------------------------------->
+
+    <section class="chart-section">
+
+        <canvas id="energy-chart"></canvas>
+
+    </section>
+
+    <!-- Month selector -------------------------------------------------->
+
+    <section class="month-selector">
+
+        <button
+            id="previous-month"
+            class="nav-button"
+            type="button">
+
+            &#10094;
+
+        </button>
+
+        <div
+            id="selected-month"
+            class="selected-month">
+
+            --
+
+        </div>
+
+        <button
+            id="next-month"
+            class="nav-button"
+            type="button">
+
+            &#10095;
+
+        </button>
+
+    </section>
+
+    <!-- Month details --------------------------------------------------->
+
+    <section class="month-details">
+
+        <div class="detail-row">
+
+            <span class="detail-label">
+
+                ⚡ Energie
+
+            </span>
+
+            <span id="month-kwh">
+
+                --
+
+            </span>
+
+        </div>
+
+        <div class="detail-row">
+
+            <span class="detail-label">
+
+                🪙 Credits
+
+            </span>
+
+            <span id="month-credits">
+
+                --
+
+            </span>
+
+        </div>
+
+        <div class="detail-row">
+
+            <span class="detail-label">
+
+                🚗 Sessies
+
+            </span>
+
+            <span id="month-sessions">
+
+                --
+
+            </span>
+
+        </div>
+
+    </section>
+
+</div>
+
+<script src="chart.umd.min.js"></script>
+
+<script src="helpers.js"></script>
+<script src="chart.js"></script>
+<script src="ui.js"></script>
+<script src="app.js"></script>
 
 </body>
 

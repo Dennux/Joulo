@@ -37,7 +37,11 @@ module.exports = {
       };
     }
 
-    const months = energy.months.map(month => ({
+    const sortedMonths = [...energy.months].sort(
+    (a, b) => a.month.localeCompare(b.month)
+);
+
+    const months = sortedMonths.map(month => ({
 
       month: month.month,
 
@@ -46,10 +50,10 @@ module.exports = {
         .replace(/^./, c => c.toUpperCase()),
 
       kwh: month.kwh,
-      kwhAll: month.kwhAll,
+     // kwhAll: month.kwhAll,
 
       sessions: month.sessions,
-      sessionsAll: month.sessionsAll,
+     // sessionsAll: month.sessionsAll,
 
       ereCredits: month.ereCredits
 
