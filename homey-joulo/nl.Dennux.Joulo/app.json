@@ -48,7 +48,11 @@
       },
       "capabilities": [
         "onoff",
-        "meter_power"
+        "meter_power",
+        "charger_status",
+        "charger_connection_type",
+        "charger_mid_certified",
+        "charger_mid_eligible"
       ],
       "platforms": [
         "local"
@@ -82,5 +86,105 @@
       },
       "id": "ere"
     }
-  ]
+  ],
+  "capabilities": {
+    "charger_connection_type": {
+      "type": "enum",
+      "title": {
+        "en": "Connection",
+        "nl": "Verbinding"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "values": [
+        {
+          "id": "easee",
+          "title": {
+            "en": "Easee",
+            "nl": "Easee"
+          }
+        },
+        {
+          "id": "wallbox",
+          "title": {
+            "en": "Wallbox",
+            "nl": "Wallbox"
+          }
+        },
+        {
+          "id": "zaptec",
+          "title": {
+            "en": "Zaptec",
+            "nl": "Zaptec"
+          }
+        },
+        {
+          "id": "enphase",
+          "title": {
+            "en": "Enphase",
+            "nl": "Enphase"
+          }
+        },
+        {
+          "id": "ocpp",
+          "title": {
+            "en": "OCPP",
+            "nl": "OCPP"
+          }
+        },
+        {
+          "id": "smappee",
+          "title": {
+            "en": "Smappee",
+            "nl": "Smappee"
+          }
+        },
+        {
+          "id": "v2c",
+          "title": {
+            "en": "V2C",
+            "nl": "V2C"
+          }
+        },
+        {
+          "id": "other",
+          "title": {
+            "en": "Other",
+            "nl": "Overig"
+          }
+        }
+      ]
+    },
+    "charger_mid_certified": {
+      "type": "boolean",
+      "title": {
+        "en": "MID Certified",
+        "nl": "MID gecertificeerd"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor"
+    },
+    "charger_mid_eligible": {
+      "type": "boolean",
+      "title": {
+        "en": "MID Eligible",
+        "nl": "MID geschikt"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor"
+    },
+    "charger_status": {
+      "type": "string",
+      "title": {
+        "en": "Status",
+        "nl": "Status"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor"
+    }
+  }
 }

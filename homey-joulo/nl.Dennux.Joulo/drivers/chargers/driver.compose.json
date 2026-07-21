@@ -12,7 +12,11 @@
 
   "capabilities": [
   "onoff",
-  "meter_power"
+  "meter_power",
+  "charger_status",
+  "charger_connection_type",
+  "charger_mid_certified",
+  "charger_mid_eligible"
 ],
 
   "platforms": [

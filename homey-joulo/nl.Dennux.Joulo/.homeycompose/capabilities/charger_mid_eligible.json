@@ -1,0 +1,10 @@
+{
+  "type": "boolean",
+  "title": {
+    "en": "MID Eligible",
+    "nl": "MID geschikt"
+  },
+  "getable": true,
+  "setable": false,
+  "uiComponent": "sensor"
+}
