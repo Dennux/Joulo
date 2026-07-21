@@ -10,22 +10,21 @@ class ChargerDevice extends BaseDevice {
         await super.onInit();
 
         this.logger.info(
-            `Initializing charger: ${this.getName()}`
+            `Initializing charger device "${this.getName()}"`
         );
 
         await this.setAvailable();
 
         this.logger.info(
-            `Connected to charger "${this.getName()}"`
+            `Charger device "${this.getName()}" initialized`
         );
+
     }
 
-
-
     /**
-     * Update Homey device from internal charger model.
+     * Update Homey device from the internal charger model.
      *
-     * @param {Object} charger
+     * @param {Object} charger Internal charger model.
      */
     async updateFromModel(charger) {
 
