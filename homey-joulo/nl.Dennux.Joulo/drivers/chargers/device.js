@@ -1,6 +1,7 @@
 'use strict';
 
 const BaseDevice = require('../../lib/BaseDevice');
+const capabilityMap = require('./capabilityMap');
 
 class ChargerDevice extends BaseDevice {
 
@@ -19,7 +20,7 @@ class ChargerDevice extends BaseDevice {
         );
     }
 
-    
+
 
     /**
      * Update Homey device from internal charger model.
@@ -36,14 +37,9 @@ class ChargerDevice extends BaseDevice {
 
             await this.setAvailable();
 
-            await this.setCapability(
-                'onoff',
-                charger.isCharging
-            );
-
-            await this.setCapability(
-                'meter_power',
-                Number((charger.latestMeterWh / 1000).toFixed(2))
+            await this.updateCapabilities(
+                charger,
+                capabilityMap
             );
 
         } catch (error) {
